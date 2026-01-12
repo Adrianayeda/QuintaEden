@@ -1,0 +1,432 @@
+<!doctype html>
+<html lang="es" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quinta Edén - Sesiones Fotográficas</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&amp;family=Montserrat:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+  <script src="/_sdk/element_sdk.js"></script>
+  <style>
+    body {
+      box-sizing: border-box;
+    }
+    .font-playfair { font-family: 'Playfair Display', serif; }
+    .font-montserrat { font-family: 'Montserrat', sans-serif; }
+    
+    .hero-gradient {
+      background: linear-gradient(135deg, #2d3436 0%, #4a5568 50%, #2d3436 100%);
+    }
+    
+    .card-hover {
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .card-hover:hover {
+      transform: translateY(-8px);
+    }
+    
+    .btn-glow {
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-glow::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s;
+    }
+    .btn-glow:hover::before {
+      left: 100%;
+    }
+    
+    .fade-in {
+      animation: fadeIn 0.8s ease-out forwards;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .gallery-item {
+      transition: all 0.3s ease;
+    }
+    .gallery-item:hover {
+      transform: scale(1.05);
+      z-index: 10;
+    }
+    
+    .leaf-pattern {
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 5c-5 10-15 15-25 15 10 5 15 15 15 25 5-10 15-15 25-15-10-5-15-15-15-25z' fill='%23d4a574' fill-opacity='0.05'/%3E%3C/svg%3E");
+    }
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full font-montserrat">
+  <div id="app-wrapper" class="w-full h-full overflow-auto bg-stone-50"><!-- Navigation -->
+   <nav class="fixed top-0 left-0 right-0 z-50 bg-stone-900/95 backdrop-blur-sm border-b border-amber-700/30">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+     <div class="flex justify-between items-center h-16">
+      <div class="flex items-center gap-3">
+       <svg class="w-10 h-10 text-amber-500" viewbox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="23" stroke="currentColor" stroke-width="2" /> <path d="M25 8c-3 8-10 12-17 12 8 3 12 10 12 17 3-8 10-12 17-12-8-3-12-10-12-17z" fill="currentColor" /> <circle cx="25" cy="25" r="5" fill="currentColor" />
+       </svg><span id="nav-business-name" class="font-playfair text-xl text-amber-100 font-semibold tracking-wide">Quinta Edén</span>
+      </div>
+      <div class="hidden md:flex items-center gap-8"><a href="#sesiones" class="text-stone-300 hover:text-amber-400 transition-colors text-sm uppercase tracking-wider">Sesiones</a> <a href="#galeria" class="text-stone-300 hover:text-amber-400 transition-colors text-sm uppercase tracking-wider">Galería</a> <a href="#ubicacion" class="text-stone-300 hover:text-amber-400 transition-colors text-sm uppercase tracking-wider">Ubicación</a> <a href="#contacto" class="text-stone-300 hover:text-amber-400 transition-colors text-sm uppercase tracking-wider">Contacto</a>
+      </div>
+     </div>
+    </div>
+   </nav><!-- Hero Section -->
+   <section class="hero-gradient min-h-screen flex items-center justify-center relative overflow-hidden pt-16">
+    <div class="absolute inset-0 leaf-pattern opacity-30"></div>
+    <div class="absolute top-20 left-10 w-72 h-72 bg-amber-500/10 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-20 right-10 w-96 h-96 bg-amber-600/10 rounded-full blur-3xl"></div>
+    <div class="relative z-10 text-center px-4 max-w-4xl mx-auto fade-in">
+     <div class="mb-6">
+      <svg class="w-20 h-20 mx-auto text-amber-500 mb-4" viewbox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M40 10c-5 15-20 22-30 22 15 5 22 20 22 30 5-15 20-22 30-22-15-5-22-20-22-30z" fill="currentColor" opacity="0.3" /> <path d="M40 20c-3 10-12 15-20 15 10 3 15 12 15 20 3-10 12-15 20-15-10-3-15-12-15-20z" fill="currentColor" /> <circle cx="40" cy="42" r="6" fill="#1a1a1a" />
+      </svg>
+     </div>
+     <h1 id="hero-title" class="font-playfair text-5xl md:text-7xl font-bold text-amber-100 mb-6 leading-tight">Tu escenario perfecto<br><span class="text-amber-500">para cada recuerdo</span></h1>
+     <p id="hero-subtitle" class="text-stone-300 text-lg md:text-xl mb-10 max-w-2xl mx-auto font-light">Renta de locación exclusiva para sesiones fotográficas profesionales en un ambiente natural y elegante</p><a href="#sesiones" class="btn-glow inline-flex items-center gap-3 bg-amber-600 hover:bg-amber-700 text-white px-8 py-4 rounded-full text-lg font-medium transition-all shadow-lg shadow-amber-600/30"> <span>Explorar Sesiones</span>
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+      </svg></a>
+    </div>
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+     <svg class="w-6 h-6 text-amber-500/50" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+     </svg>
+    </div>
+   </section><!-- Sessions Section -->
+   <section id="sesiones" class="py-24 bg-stone-100 leaf-pattern">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+     <div class="text-center mb-16"><span class="text-amber-600 text-sm uppercase tracking-widest font-medium">Nuestros Paquetes</span>
+      <h2 class="font-playfair text-4xl md:text-5xl font-bold text-stone-800 mt-3">Tipos de Sesiones</h2>
+      <div class="w-24 h-1 bg-amber-500 mx-auto mt-6"></div>
+     </div>
+     <div class="grid md:grid-cols-3 gap-8"><!-- Session 1 -->
+      <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-xl">
+       <div class="h-56 bg-gradient-to-br from-amber-100 to-amber-200 flex items-center justify-center relative">
+        <svg class="w-24 h-24 text-amber-600" viewbox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="40" r="18" stroke="currentColor" stroke-width="3" fill="none" /> <path d="M50 58c-15 0-28 8-28 20v5h56v-5c0-12-13-20-28-20z" stroke="currentColor" stroke-width="3" fill="none" /> <circle cx="50" cy="40" r="8" fill="currentColor" opacity="0.3" />
+        </svg>
+        <div class="absolute top-4 right-4 bg-amber-600 text-white px-3 py-1 rounded-full text-sm font-medium">
+         Popular
+        </div>
+       </div>
+       <div class="p-8">
+        <h3 id="session-1-title" class="font-playfair text-2xl font-bold text-stone-800 mb-3">Sesión Íntima</h3>
+        <p class="text-stone-600 mb-4 leading-relaxed">Perfecta para parejas, maternidad o retratos individuales. Ambiente romántico y privado.</p>
+        <ul class="space-y-2 mb-6">
+         <li class="flex items-center gap-2 text-stone-600 text-sm">
+          <svg class="w-4 h-4 text-amber-500" fill="currentColor" viewbox="0 0 20 20">
+           <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" />
+          </svg> 2 horas de acceso</li>
+         <li class="flex items-center gap-2 text-stone-600 text-sm">
+          <svg class="w-4 h-4 text-amber-500" fill="currentColor" viewbox="0 0 20 20">
+           <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" />
+          </svg> 3 escenarios incluidos</li>
+         <li class="flex items-center gap-2 text-stone-600 text-sm">
+          <svg class="w-4 h-4 text-amber-500" fill="currentColor" viewbox="0 0 20 20">
+           <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" />
+          </svg> Hasta 3 personas</li>
+        </ul>
+        <div class="flex items-center justify-between"><span class="font-playfair text-3xl font-bold text-amber-600">$1,500</span> <a href="#contacto" class="bg-stone-800 hover:bg-stone-900 text-white px-5 py-2 rounded-full text-sm font-medium transition-colors">Agendar</a>
+        </div>
+       </div>
+      </div><!-- Session 2 -->
+      <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-xl border-2 border-amber-500">
+       <div class="h-56 bg-gradient-to-br from-amber-200 to-amber-300 flex items-center justify-center relative">
+        <svg class="w-24 h-24 text-amber-700" viewbox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="35" cy="35" r="12" stroke="currentColor" stroke-width="3" fill="none" /> <circle cx="65" cy="35" r="12" stroke="currentColor" stroke-width="3" fill="none" /> <circle cx="50" cy="60" r="10" stroke="currentColor" stroke-width="3" fill="none" /> <path d="M20 75c0-8 7-15 15-15h30c8 0 15 7 15 15v8H20v-8z" stroke="currentColor" stroke-width="3" fill="none" />
+        </svg>
+        <div class="absolute top-4 right-4 bg-amber-700 text-white px-3 py-1 rounded-full text-sm font-medium">
+         Recomendado
+        </div>
+       </div>
+       <div class="p-8">
+        <h3 id="session-2-title" class="font-playfair text-2xl font-bold text-stone-800 mb-3">Sesión Familiar</h3>
+        <p class="text-stone-600 mb-4 leading-relaxed">Ideal para familias y grupos. Espacios amplios y diversos para todos los estilos.</p>
+        <ul class="space-y-2 mb-6">
+         <li class="flex items-center gap-2 text-stone-600 text-sm">
+          <svg class="w-4 h-4 text-amber-500" fill="currentColor" viewbox="0 0 20 20">
+           <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" />
+          </svg> 4 horas de acceso</li>
+         <li class="flex items-center gap-2 text-stone-600 text-sm">
+          <svg class="w-4 h-4 text-amber-500" fill="currentColor" viewbox="0 0 20 20">
+           <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" />
+          </svg> 5 escenarios incluidos</li>
+         <li class="flex items-center gap-2 text-stone-600 text-sm">
+          <svg class="w-4 h-4 text-amber-500" fill="currentColor" viewbox="0 0 20 20">
+           <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" />
+          </svg> Hasta 10 personas</li>
+        </ul>
+        <div class="flex items-center justify-between"><span class="font-playfair text-3xl font-bold text-amber-600">$2,800</span> <a href="#contacto" class="bg-amber-600 hover:bg-amber-700 text-white px-5 py-2 rounded-full text-sm font-medium transition-colors">Agendar</a>
+        </div>
+       </div>
+      </div><!-- Session 3 -->
+      <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-xl">
+       <div class="h-56 bg-gradient-to-br from-stone-200 to-stone-300 flex items-center justify-center relative">
+        <svg class="w-24 h-24 text-stone-600" viewbox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="20" y="30" width="60" height="45" rx="5" stroke="currentColor" stroke-width="3" fill="none" /> <circle cx="50" cy="52" r="15" stroke="currentColor" stroke-width="3" fill="none" /> <circle cx="50" cy="52" r="8" fill="currentColor" opacity="0.3" /> <rect x="30" y="20" width="40" height="10" rx="2" stroke="currentColor" stroke-width="2" fill="none" /> <circle cx="70" cy="40" r="4" fill="currentColor" />
+        </svg>
+        <div class="absolute top-4 right-4 bg-stone-700 text-white px-3 py-1 rounded-full text-sm font-medium">
+         Premium
+        </div>
+       </div>
+       <div class="p-8">
+        <h3 id="session-3-title" class="font-playfair text-2xl font-bold text-stone-800 mb-3">Sesión Profesional</h3>
+        <p class="text-stone-600 mb-4 leading-relaxed">Para producciones, marcas y contenido comercial. Acceso completo a todas las áreas.</p>
+        <ul class="space-y-2 mb-6">
+         <li class="flex items-center gap-2 text-stone-600 text-sm">
+          <svg class="w-4 h-4 text-amber-500" fill="currentColor" viewbox="0 0 20 20">
+           <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" />
+          </svg> 8 horas de acceso</li>
+         <li class="flex items-center gap-2 text-stone-600 text-sm">
+          <svg class="w-4 h-4 text-amber-500" fill="currentColor" viewbox="0 0 20 20">
+           <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" />
+          </svg> Todos los escenarios</li>
+         <li class="flex items-center gap-2 text-stone-600 text-sm">
+          <svg class="w-4 h-4 text-amber-500" fill="currentColor" viewbox="0 0 20 20">
+           <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" />
+          </svg> Equipo ilimitado</li>
+        </ul>
+        <div class="flex items-center justify-between"><span class="font-playfair text-3xl font-bold text-amber-600">$5,500</span> <a href="#contacto" class="bg-stone-800 hover:bg-stone-900 text-white px-5 py-2 rounded-full text-sm font-medium transition-colors">Agendar</a>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Gallery Section -->
+   <section id="galeria" class="py-24 bg-stone-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+     <div class="text-center mb-16"><span class="text-amber-500 text-sm uppercase tracking-widest font-medium">Nuestros Espacios</span>
+      <h2 class="font-playfair text-4xl md:text-5xl font-bold text-amber-100 mt-3">Galería del Lugar</h2>
+      <div class="w-24 h-1 bg-amber-500 mx-auto mt-6"></div>
+     </div>
+     <div class="grid grid-cols-2 md:grid-cols-4 gap-4"><!-- Gallery Items with SVG placeholders -->
+      <div class="gallery-item col-span-2 row-span-2 rounded-2xl overflow-hidden bg-gradient-to-br from-amber-200 to-amber-400 aspect-square flex items-center justify-center">
+       <svg class="w-32 h-32 text-amber-700" viewbox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="40" width="80" height="50" rx="3" stroke="currentColor" stroke-width="2" fill="none" /> <path d="M10 50h80M25 40V30a15 15 0 0130 0v10M55 40V35a10 10 0 0120 0v5" stroke="currentColor" stroke-width="2" /> <circle cx="50" cy="20" r="15" stroke="currentColor" stroke-width="2" fill="currentColor" fill-opacity="0.2" /> <path d="M5 90h90" stroke="currentColor" stroke-width="3" /> <text x="50" y="75" text-anchor="middle" fill="currentColor" font-size="8" font-family="serif">
+         Jardín Principal
+        </text>
+       </svg>
+      </div>
+      <div class="gallery-item rounded-2xl overflow-hidden bg-gradient-to-br from-stone-300 to-stone-400 aspect-square flex items-center justify-center">
+       <svg class="w-16 h-16 text-stone-700" viewbox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="5" y="15" width="50" height="40" rx="2" stroke="currentColor" stroke-width="2" fill="none" /> <path d="M5 25h50M15 15V5M45 15V5" stroke="currentColor" stroke-width="2" /> <rect x="15" y="30" width="10" height="15" stroke="currentColor" stroke-width="1.5" fill="currentColor" fill-opacity="0.2" /> <rect x="35" y="30" width="10" height="10" stroke="currentColor" stroke-width="1.5" fill="currentColor" fill-opacity="0.2" />
+       </svg>
+      </div>
+      <div class="gallery-item rounded-2xl overflow-hidden bg-gradient-to-br from-green-200 to-green-400 aspect-square flex items-center justify-center">
+       <svg class="w-16 h-16 text-green-700" viewbox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M30 55V30M20 55h20" stroke="currentColor" stroke-width="2" /> <path d="M30 10c-8 5-15 12-15 20s7 15 15 15 15-7 15-15-7-15-15-20z" fill="currentColor" fill-opacity="0.3" stroke="currentColor" stroke-width="2" /> <path d="M30 5c-3 3-5 8-5 12s2 8 5 10c3-2 5-6 5-10s-2-9-5-12z" fill="currentColor" fill-opacity="0.5" />
+       </svg>
+      </div>
+      <div class="gallery-item rounded-2xl overflow-hidden bg-gradient-to-br from-amber-100 to-amber-300 aspect-square flex items-center justify-center">
+       <svg class="w-16 h-16 text-amber-600" viewbox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><ellipse cx="30" cy="50" rx="25" ry="5" fill="currentColor" fill-opacity="0.2" /> <path d="M15 50c0-20 5-35 15-45 10 10 15 25 15 45" stroke="currentColor" stroke-width="2" fill="none" /> <path d="M22 40c0-10 3-20 8-28 5 8 8 18 8 28" stroke="currentColor" stroke-width="1.5" fill="currentColor" fill-opacity="0.3" />
+       </svg>
+      </div>
+      <div class="gallery-item rounded-2xl overflow-hidden bg-gradient-to-br from-rose-200 to-rose-400 aspect-square flex items-center justify-center">
+       <svg class="w-16 h-16 text-rose-700" viewbox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M30 55V35" stroke="currentColor" stroke-width="2" /> <circle cx="30" cy="25" r="15" stroke="currentColor" stroke-width="2" fill="currentColor" fill-opacity="0.3" /> <circle cx="30" cy="25" r="8" stroke="currentColor" stroke-width="1.5" fill="currentColor" fill-opacity="0.5" /> <circle cx="30" cy="25" r="3" fill="currentColor" /> <path d="M25 55c0-3 2-5 5-5s5 2 5 5" stroke="currentColor" stroke-width="2" fill="none" />
+       </svg>
+      </div>
+      <div class="gallery-item col-span-2 rounded-2xl overflow-hidden bg-gradient-to-br from-blue-200 to-blue-400 aspect-video flex items-center justify-center">
+       <svg class="w-24 h-16 text-blue-700" viewbox="0 0 100 60" fill="none" xmlns="http://www.w3.org/2000/svg"><ellipse cx="50" cy="45" rx="45" ry="10" fill="currentColor" fill-opacity="0.3" /> <path d="M10 45c0-15 18-30 40-30s40 15 40 30" stroke="currentColor" stroke-width="2" fill="none" /> <circle cx="50" cy="25" r="8" stroke="currentColor" stroke-width="2" fill="currentColor" fill-opacity="0.5" /> <path d="M30 45v-10a5 5 0 0110 0v10M60 45v-10a5 5 0 0110 0v10" stroke="currentColor" stroke-width="2" /> <text x="50" y="58" text-anchor="middle" fill="currentColor" font-size="6" font-family="serif">
+         Fuente Ornamental
+        </text>
+       </svg>
+      </div>
+     </div>
+    </div>
+   </section><!-- Location Section -->
+   <section id="ubicacion" class="py-24 bg-stone-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+     <div class="text-center mb-16"><span class="text-amber-600 text-sm uppercase tracking-widest font-medium">Encuéntranos</span>
+      <h2 class="font-playfair text-4xl md:text-5xl font-bold text-stone-800 mt-3">Ubicación</h2>
+      <div class="w-24 h-1 bg-amber-500 mx-auto mt-6"></div>
+     </div>
+     <div class="grid lg:grid-cols-2 gap-8 items-center">
+      <div class="bg-white rounded-2xl p-8 shadow-lg">
+       <div class="flex items-start gap-4 mb-6">
+        <div class="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center flex-shrink-0">
+         <svg class="w-6 h-6 text-amber-600" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+         </svg>
+        </div>
+        <div>
+         <h3 class="font-playfair text-xl font-bold text-stone-800 mb-1">Dirección</h3>
+         <p id="location-address" class="text-stone-600">Carretera a Chapala Km 15, Col. La Huerta<br>
+          Tlajomulco de Zúñiga, Jalisco, México</p>
+        </div>
+       </div>
+       <div class="flex items-start gap-4 mb-6">
+        <div class="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center flex-shrink-0">
+         <svg class="w-6 h-6 text-amber-600" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+         </svg>
+        </div>
+        <div>
+         <h3 class="font-playfair text-xl font-bold text-stone-800 mb-1">Horarios</h3>
+         <p class="text-stone-600">Lunes a Domingo<br>
+          7:00 AM - 8:00 PM</p>
+        </div>
+       </div>
+       <div class="flex items-start gap-4">
+        <div class="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center flex-shrink-0">
+         <svg class="w-6 h-6 text-amber-600" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+         </svg>
+        </div>
+        <div>
+         <h3 class="font-playfair text-xl font-bold text-stone-800 mb-1">Referencias</h3>
+         <p class="text-stone-600">A 5 minutos del centro de Tlajomulco<br>
+          Estacionamiento amplio disponible</p>
+        </div>
+       </div>
+      </div>
+      <div class="rounded-2xl overflow-hidden shadow-lg h-96"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d119430.25!2d-103.5!3d20.5!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x842f5!2sJalisco!5e0!3m2!1ses!2smx!4v1234567890" width="100%" height="100%" style="border:0;" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Ubicación de Quinta Edén"> </iframe>
+      </div>
+     </div>
+    </div>
+   </section><!-- CTA Section -->
+   <section id="contacto" class="py-24 hero-gradient relative overflow-hidden">
+    <div class="absolute inset-0 leaf-pattern opacity-20"></div>
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+     <h2 class="font-playfair text-4xl md:text-5xl font-bold text-amber-100 mb-6">¿Listo para crear recuerdos únicos?</h2>
+     <p class="text-stone-300 text-lg mb-10 max-w-2xl mx-auto">Agenda tu sesión hoy y descubre por qué Quinta Edén es el escenario perfecto para tus fotografías más especiales.</p>
+     <div class="flex flex-col sm:flex-row gap-4 justify-center items-center"><a href="https://wa.me/521234567890" target="_blank" rel="noopener noreferrer" class="btn-glow inline-flex items-center gap-3 bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-full text-lg font-medium transition-all shadow-lg">
+       <svg class="w-6 h-6" fill="currentColor" viewbox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+       </svg><span>WhatsApp</span> </a> <a href="tel:+521234567890" class="btn-glow inline-flex items-center gap-3 bg-amber-600 hover:bg-amber-700 text-white px-8 py-4 rounded-full text-lg font-medium transition-all shadow-lg">
+       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+       </svg><span id="cta-phone">+52 123 456 7890</span> </a>
+     </div>
+    </div>
+   </section><!-- Footer -->
+   <footer class="bg-stone-900 text-stone-300 py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+     <div class="grid md:grid-cols-3 gap-12"><!-- Left Column - Web Creator -->
+      <div>
+       <h4 class="font-playfair text-lg font-semibold text-amber-100 mb-4">Desarrollado por</h4>
+       <p class="text-stone-400 mb-4">Sitio web creado con ❤️</p>
+       <div class="space-y-2"><a href="mailto:developer@email.com" class="flex items-center gap-2 text-stone-400 hover:text-amber-400 transition-colors">
+         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+         </svg><span>developer@email.com</span> </a> <a href="https://portfolio.com" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-stone-400 hover:text-amber-400 transition-colors">
+         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+         </svg><span>Mi Portafolio</span> </a>
+       </div>
+      </div><!-- Center Column - Business Info -->
+      <div class="text-center">
+       <div class="flex items-center justify-center gap-3 mb-4">
+        <svg class="w-10 h-10 text-amber-500" viewbox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="23" stroke="currentColor" stroke-width="2" /> <path d="M25 8c-3 8-10 12-17 12 8 3 12 10 12 17 3-8 10-12 17-12-8-3-12-10-12-17z" fill="currentColor" /> <circle cx="25" cy="25" r="5" fill="currentColor" />
+        </svg><span id="footer-business-name" class="font-playfair text-2xl text-amber-100 font-semibold">Quinta Edén</span>
+       </div>
+       <p class="text-stone-400 mb-6">Tu escenario perfecto para cada recuerdo</p><!-- Social Media -->
+       <div class="flex justify-center gap-4"><a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="w-10 h-10 bg-stone-800 hover:bg-amber-600 rounded-full flex items-center justify-center transition-colors">
+         <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+         </svg></a> <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="w-10 h-10 bg-stone-800 hover:bg-amber-600 rounded-full flex items-center justify-center transition-colors">
+         <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+         </svg></a> <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" class="w-10 h-10 bg-stone-800 hover:bg-amber-600 rounded-full flex items-center justify-center transition-colors">
+         <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z" />
+         </svg></a> <a href="https://pinterest.com" target="_blank" rel="noopener noreferrer" class="w-10 h-10 bg-stone-800 hover:bg-amber-600 rounded-full flex items-center justify-center transition-colors">
+         <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24"><path d="M12 0C5.373 0 0 5.372 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 01.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.631-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12 0-6.628-5.373-12-12-12z" />
+         </svg></a>
+       </div>
+      </div><!-- Right Column - Contact -->
+      <div class="text-right">
+       <h4 class="font-playfair text-lg font-semibold text-amber-100 mb-4">Contacto</h4>
+       <div class="space-y-3"><a id="footer-phone" href="tel:+521234567890" class="flex items-center justify-end gap-2 text-stone-400 hover:text-amber-400 transition-colors"> <span>+52 123 456 7890</span>
+         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+         </svg></a> <a id="footer-email" href="mailto:contacto@quintaeden.com" class="flex items-center justify-end gap-2 text-stone-400 hover:text-amber-400 transition-colors"> <span>contacto@quintaeden.com</span>
+         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+         </svg></a> <a href="https://wa.me/521234567890" target="_blank" rel="noopener noreferrer" class="flex items-center justify-end gap-2 text-stone-400 hover:text-amber-400 transition-colors"> <span>WhatsApp</span>
+         <svg class="w-4 h-4" fill="currentColor" viewbox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+         </svg></a>
+       </div>
+      </div>
+     </div>
+     <div class="border-t border-stone-800 mt-12 pt-8 text-center">
+      <p class="text-stone-500 text-sm">© 2024 Quinta Edén. Todos los derechos reservados.</p>
+     </div>
+    </div>
+   </footer>
+  </div>
+  <script>
+    const defaultConfig = {
+      business_name: 'Quinta Edén',
+      hero_title: 'Tu escenario perfecto<br><span class="text-amber-500">para cada recuerdo</span>',
+      hero_subtitle: 'Renta de locación exclusiva para sesiones fotográficas profesionales en un ambiente natural y elegante',
+      session_1_title: 'Sesión Íntima',
+      session_2_title: 'Sesión Familiar',
+      session_3_title: 'Sesión Profesional',
+      phone_number: '+52 123 456 7890',
+      email_address: 'contacto@quintaeden.com',
+      address: 'Carretera a Chapala Km 15, Col. La Huerta<br>Tlajomulco de Zúñiga, Jalisco, México',
+      background_color: '#1c1917',
+      surface_color: '#ffffff',
+      text_color: '#44403c',
+      primary_action_color: '#d97706',
+      secondary_action_color: '#292524'
+    };
+
+    async function onConfigChange(config) {
+      document.getElementById('nav-business-name').textContent = config.business_name || defaultConfig.business_name;
+      document.getElementById('footer-business-name').textContent = config.business_name || defaultConfig.business_name;
+      document.getElementById('hero-title').innerHTML = config.hero_title || defaultConfig.hero_title;
+      document.getElementById('hero-subtitle').textContent = config.hero_subtitle || defaultConfig.hero_subtitle;
+      document.getElementById('session-1-title').textContent = config.session_1_title || defaultConfig.session_1_title;
+      document.getElementById('session-2-title').textContent = config.session_2_title || defaultConfig.session_2_title;
+      document.getElementById('session-3-title').textContent = config.session_3_title || defaultConfig.session_3_title;
+      document.getElementById('cta-phone').textContent = config.phone_number || defaultConfig.phone_number;
+      document.getElementById('footer-phone').innerHTML = `<span>${config.phone_number || defaultConfig.phone_number}</span><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>`;
+      document.getElementById('footer-email').innerHTML = `<span>${config.email_address || defaultConfig.email_address}</span><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>`;
+      document.getElementById('location-address').innerHTML = config.address || defaultConfig.address;
+    }
+
+    function mapToCapabilities(config) {
+      return {
+        recolorables: [
+          {
+            get: () => config.background_color || defaultConfig.background_color,
+            set: (value) => { config.background_color = value; window.elementSdk.setConfig({ background_color: value }); }
+          },
+          {
+            get: () => config.surface_color || defaultConfig.surface_color,
+            set: (value) => { config.surface_color = value; window.elementSdk.setConfig({ surface_color: value }); }
+          },
+          {
+            get: () => config.text_color || defaultConfig.text_color,
+            set: (value) => { config.text_color = value; window.elementSdk.setConfig({ text_color: value }); }
+          },
+          {
+            get: () => config.primary_action_color || defaultConfig.primary_action_color,
+            set: (value) => { config.primary_action_color = value; window.elementSdk.setConfig({ primary_action_color: value }); }
+          },
+          {
+            get: () => config.secondary_action_color || defaultConfig.secondary_action_color,
+            set: (value) => { config.secondary_action_color = value; window.elementSdk.setConfig({ secondary_action_color: value }); }
+          }
+        ],
+        borderables: [],
+        fontEditable: undefined,
+        fontSizeable: undefined
+      };
+    }
+
+    function mapToEditPanelValues(config) {
+      return new Map([
+        ['business_name', config.business_name || defaultConfig.business_name],
+        ['hero_title', config.hero_title || defaultConfig.hero_title],
+        ['hero_subtitle', config.hero_subtitle || defaultConfig.hero_subtitle],
+        ['session_1_title', config.session_1_title || defaultConfig.session_1_title],
+        ['session_2_title', config.session_2_title || defaultConfig.session_2_title],
+        ['session_3_title', config.session_3_title || defaultConfig.session_3_title],
+        ['phone_number', config.phone_number || defaultConfig.phone_number],
+        ['email_address', config.email_address || defaultConfig.email_address],
+        ['address', config.address || defaultConfig.address]
+      ]);
+    }
+
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities,
+        mapToEditPanelValues
+      });
+    }
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9bc9e2a635d7a634',t:'MTc2ODE5MTg3OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
