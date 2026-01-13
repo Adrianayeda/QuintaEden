@@ -10,29 +10,7 @@
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&amp;family=Montserrat:wght@300;400;500;600&amp;display=swap"
         rel="stylesheet">
     <script src="/_sdk/element_sdk.js"></script>
-
-    <script>
-        const menuBtn = document.getElementById("menu-btn");
-        const mobileMenu = document.getElementById("mobile-menu");
-
-        if (menuBtn && mobileMenu) {
-            menuBtn.addEventListener("click", () => {
-                mobileMenu.classList.toggle("hidden");
-            });
-        }
-
-        const heroImages = document.querySelectorAll(".hero-img");
-        let heroIndex = 0;
-
-        if (heroImages.length > 0) {
-            setInterval(() => {
-                heroImages[heroIndex].classList.remove("active");
-                heroIndex = (heroIndex + 1) % heroImages.length;
-                heroImages[heroIndex].classList.add("active");
-            }, 3500);
-        }
-    </script>
-</body>
+    </body>
 
     <style>
         body {
@@ -238,6 +216,27 @@
                             <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
                         </svg>
                     </button>
+                    <script>
+                        const menuBtn = document.getElementById("menu-btn");
+                        const mobileMenu = document.getElementById("mobile-menu");
+
+                        if (menuBtn && mobileMenu) {
+                            menuBtn.addEventListener("click", () => {
+                                mobileMenu.classList.toggle("hidden");
+                            });
+                        }
+
+                        const heroImages = document.querySelectorAll(".hero-img");
+                        let heroIndex = 0;
+
+                        if (heroImages.length > 0) {
+                            setInterval(() => {
+                                heroImages[heroIndex].classList.remove("active");
+                                heroIndex = (heroIndex + 1) % heroImages.length;
+                                heroImages[heroIndex].classList.add("active");
+                            }, 3500);
+                        }
+                    </script>
                     <div class="hidden md:flex items-center gap-8">
                         <a href="#sesiones"
                             class="text-stone-300 hover:text-amber-400 transition-colors text-sm uppercase tracking-wider">
